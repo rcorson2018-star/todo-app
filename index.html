@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todo App</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    min-height: 100vh;
+    padding: 16px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .quadrant {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-height: 300px;
+  }
+
+  .quadrant-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+  }
+
+  .quadrant-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Per-quadrant accent colors */
+  .q-daily .quadrant-header { border-color: #6c63ff; }
+  .q-daily .quadrant-title { color: #6c63ff; }
+
+  .q-longterm .quadrant-header { border-color: #22c55e; }
+  .q-longterm .quadrant-title { color: #22c55e; }
+
+  .q-other .quadrant-header { border-color: #f59e0b; }
+  .q-other .quadrant-title { color: #f59e0b; }
+
+  .q-french .quadrant-header { border-color: #ef4444; }
+  .q-french .quadrant-title { color: #ef4444; }
+
+  /* Todo list */
+  .todo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    overflow-y: auto;
+    max-height: 220px;
+  }
+
+  .todo-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    background: #f8f9fa;
+    transition: background 0.15s;
+  }
+
+  .todo-item:hover { background: #f0f2f5; }
+
+  .todo-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #6c63ff;
+    flex-shrink: 0;
+  }
+
+  .q-longterm .todo-item input[type="checkbox"] { accent-color: #22c55e; }
+  .q-other .todo-item input[type="checkbox"] { accent-color: #f59e0b; }
+
+  .todo-text {
+    flex: 1;
+    font-size: 0.9rem;
+    color: #333;
+    word-break: break-word;
+  }
+
+  .todo-text.done {
+    text-decoration: line-through;
+    color: #aaa;
+  }
+
+  .btn-delete {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .btn-delete:hover { color: #ef4444; }
+
+  /* Input forms */
+  .todo-form {
+    display: flex;
+    gap: 6px;
+  }
+
+  .todo-input {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 7px;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.15s;
+    background: #fafafa;
+  }
+
+  .todo-input:focus { border-color: #6c63ff; background: #fff; }
+  .q-longterm .todo-input:focus { border-color: #22c55e; }
+  .q-other .todo-input:focus { border-color: #f59e0b; }
+  .q-french .todo-input:focus { border-color: #ef4444; }
+
+  .btn-add {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 7px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: #6c63ff;
+    color: #fff;
+    transition: opacity 0.15s;
+  }
+
+  .btn-add:hover { opacity: 0.85; }
+  .q-longterm .btn-add { background: #22c55e; }
+  .q-other .btn-add { background: #f59e0b; }
+  .q-french .btn-add { background: #ef4444; }
+
+  .btn-clear {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border: 1.5px solid #ddd;
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+    color: #888;
+    transition: all 0.15s;
+  }
+
+  .btn-clear:hover { background: #f5f5f5; color: #555; }
+
+  /* French section */
+  .streak-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff5f5;
+    border: 1.5px solid #fca5a5;
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+
+  .streak-icon { font-size: 1.5rem; }
+
+  .streak-count {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ef4444;
+  }
+
+  .streak-label {
+    font-size: 0.78rem;
+    color: #888;
+    line-height: 1.3;
+  }
+
+  .streak-done-badge {
+    margin-left: auto;
+    font-size: 0.75rem;
+    background: #dcfce7;
+    color: #16a34a;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-weight: 600;
+  }
+
+  .btn-practice {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 7px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: #ef4444;
+    color: #fff;
+    transition: opacity 0.15s;
+  }
+
+  .btn-practice:hover { opacity: 0.85; }
+  .btn-practice:disabled {
+    background: #e5e7eb;
+    color: #aaa;
+    cursor: default;
+    opacity: 1;
+  }
+
+  .vocab-section { display: flex; flex-direction: column; gap: 8px; }
+
+  .vocab-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .vocab-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 140px;
+    overflow-y: auto;
+  }
+
+  .vocab-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fafafa;
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-size: 0.88rem;
+  }
+
+  .vocab-pair { color: #333; }
+  .vocab-fr { font-weight: 600; color: #ef4444; }
+  .vocab-arrow { color: #bbb; margin: 0 4px; }
+  .vocab-en { color: #555; }
+
+  .vocab-form {
+    display: flex;
+    gap: 6px;
+  }
+
+  .vocab-form input {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.83rem;
+    outline: none;
+    background: #fafafa;
+    min-width: 0;
+  }
+
+  .vocab-form input:focus { border-color: #ef4444; background: #fff; }
+
+  /* Scrollbar styling */
+  .todo-list::-webkit-scrollbar,
+  .vocab-list::-webkit-scrollbar { width: 4px; }
+  .todo-list::-webkit-scrollbar-track,
+  .vocab-list::-webkit-scrollbar-track { background: transparent; }
+  .todo-list::-webkit-scrollbar-thumb,
+  .vocab-list::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+
+  /* Empty state */
+  .empty-state {
+    color: #ccc;
+    font-size: 0.82rem;
+    text-align: center;
+    padding: 20px 0;
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 10px; }
+    .grid { grid-template-columns: 1fr; }
+    .quadrant { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+<h1>Dashboard</h1>
+<div class="grid">
+
+  <!-- DAILY -->
+  <div class="quadrant q-daily">
+    <div class="quadrant-header">
+      <span class="quadrant-title">Daily</span>
+      <button class="btn-clear" onclick="clearCompleted('daily')">Clear completed</button>
+    </div>
+    <ul class="todo-list" id="list-daily"></ul>
+    <form class="todo-form" onsubmit="handleAdd(event,'daily')">
+      <input class="todo-input" id="input-daily" placeholder="Add a task…" autocomplete="off">
+      <button class="btn-add" type="submit">Add</button>
+    </form>
+  </div>
+
+  <!-- LONG TERM -->
+  <div class="quadrant q-longterm">
+    <div class="quadrant-header">
+      <span class="quadrant-title">Long Term</span>
+    </div>
+    <ul class="todo-list" id="list-longterm"></ul>
+    <form class="todo-form" onsubmit="handleAdd(event,'longterm')">
+      <input class="todo-input" id="input-longterm" placeholder="Add a goal…" autocomplete="off">
+      <button class="btn-add" type="submit">Add</button>
+    </form>
+  </div>
+
+  <!-- OTHER -->
+  <div class="quadrant q-other">
+    <div class="quadrant-header">
+      <span class="quadrant-title">Other</span>
+    </div>
+    <ul class="todo-list" id="list-other"></ul>
+    <form class="todo-form" onsubmit="handleAdd(event,'other')">
+      <input class="todo-input" id="input-other" placeholder="Add a note…" autocomplete="off">
+      <button class="btn-add" type="submit">Add</button>
+    </form>
+  </div>
+
+  <!-- FRENCH -->
+  <div class="quadrant q-french">
+    <div class="quadrant-header">
+      <span class="quadrant-title">French</span>
+    </div>
+
+    <div class="streak-box" id="streak-box">
+      <span class="streak-icon">🔥</span>
+      <div>
+        <div class="streak-count" id="streak-count">0</div>
+        <div class="streak-label">day streak</div>
+      </div>
+      <span class="streak-done-badge" id="streak-done" style="display:none">✓ Done today</span>
+    </div>
+
+    <button class="btn-practice" id="btn-practice" onclick="markPractice()">Mark Practice Done</button>
+
+    <div class="vocab-section">
+      <div class="vocab-section-title">Vocabulary</div>
+      <ul class="vocab-list" id="vocab-list"></ul>
+      <form class="vocab-form" onsubmit="handleAddVocab(event)">
+        <input id="input-fr" placeholder="French…" autocomplete="off">
+        <input id="input-en" placeholder="English…" autocomplete="off">
+        <button class="btn-add" type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ─── Utils ───────────────────────────────────────────────────────────────────
+function uid() { return Math.random().toString(36).slice(2, 10); }
+function today() { return new Date().toISOString().slice(0, 10); }
+
+// ─── Todo CRUD ────────────────────────────────────────────────────────────────
+function loadTodos(key) {
+  try { return JSON.parse(localStorage.getItem('todos_' + key)) || []; }
+  catch { return []; }
+}
+
+function saveTodos(key, arr) {
+  localStorage.setItem('todos_' + key, JSON.stringify(arr));
+}
+
+function addTodo(key, text) {
+  const todos = loadTodos(key);
+  todos.push({ id: uid(), text, done: false });
+  saveTodos(key, todos);
+  renderTodos(key);
+}
+
+function toggleTodo(key, id) {
+  const todos = loadTodos(key);
+  const t = todos.find(t => t.id === id);
+  if (t) t.done = !t.done;
+  saveTodos(key, todos);
+  renderTodos(key);
+}
+
+function deleteTodo(key, id) {
+  saveTodos(key, loadTodos(key).filter(t => t.id !== id));
+  renderTodos(key);
+}
+
+function clearCompleted(key) {
+  saveTodos(key, loadTodos(key).filter(t => !t.done));
+  renderTodos(key);
+}
+
+function renderTodos(key) {
+  const list = document.getElementById('list-' + key);
+  const todos = loadTodos(key);
+  if (!todos.length) {
+    list.innerHTML = '<li class="empty-state">Nothing here yet</li>';
+    return;
+  }
+  list.innerHTML = todos.map(t => `
+    <li class="todo-item">
+      <input type="checkbox" ${t.done ? 'checked' : ''}
+        onchange="toggleTodo('${key}','${t.id}')">
+      <span class="todo-text ${t.done ? 'done' : ''}">${escHtml(t.text)}</span>
+      <button class="btn-delete" onclick="deleteTodo('${key}','${t.id}')" title="Delete">×</button>
+    </li>
+  `).join('');
+}
+
+function handleAdd(e, key) {
+  e.preventDefault();
+  const input = document.getElementById('input-' + key);
+  const text = input.value.trim();
+  if (text) { addTodo(key, text); input.value = ''; }
+}
+
+// ─── French streak ────────────────────────────────────────────────────────────
+function loadStreak() {
+  try { return JSON.parse(localStorage.getItem('french_streak')) || { count: 0, lastDate: null }; }
+  catch { return { count: 0, lastDate: null }; }
+}
+
+function saveStreak(s) { localStorage.setItem('french_streak', JSON.stringify(s)); }
+
+function markPractice() {
+  const s = loadStreak();
+  const t = today();
+  if (s.lastDate === t) return; // already done today
+
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yStr = yesterday.toISOString().slice(0, 10);
+
+  s.count = (s.lastDate === yStr) ? s.count + 1 : 1;
+  s.lastDate = t;
+  saveStreak(s);
+  renderStreak();
+}
+
+function renderStreak() {
+  const s = loadStreak();
+  const t = today();
+
+  // Auto-reset if more than one day gap
+  if (s.lastDate && s.lastDate !== t) {
+    const last = new Date(s.lastDate);
+    const now = new Date(t);
+    const diff = Math.floor((now - last) / 86400000);
+    if (diff > 1) {
+      s.count = 0;
+      saveStreak(s);
+    }
+  }
+
+  document.getElementById('streak-count').textContent = s.count;
+  const doneToday = s.lastDate === t;
+  document.getElementById('streak-done').style.display = doneToday ? '' : 'none';
+  document.getElementById('btn-practice').disabled = doneToday;
+}
+
+// ─── Vocabulary ───────────────────────────────────────────────────────────────
+function loadVocab() {
+  try { return JSON.parse(localStorage.getItem('french_vocab')) || []; }
+  catch { return []; }
+}
+
+function saveVocab(v) { localStorage.setItem('french_vocab', JSON.stringify(v)); }
+
+function addVocab(fr, en) {
+  const vocab = loadVocab();
+  vocab.push({ id: uid(), fr, en });
+  saveVocab(vocab);
+  renderVocab();
+}
+
+function deleteVocab(id) {
+  saveVocab(loadVocab().filter(v => v.id !== id));
+  renderVocab();
+}
+
+function renderVocab() {
+  const list = document.getElementById('vocab-list');
+  const vocab = loadVocab();
+  if (!vocab.length) {
+    list.innerHTML = '<li class="empty-state">No words yet</li>';
+    return;
+  }
+  list.innerHTML = vocab.map(v => `
+    <li class="vocab-item">
+      <span class="vocab-pair">
+        <span class="vocab-fr">${escHtml(v.fr)}</span>
+        <span class="vocab-arrow">→</span>
+        <span class="vocab-en">${escHtml(v.en)}</span>
+      </span>
+      <button class="btn-delete" onclick="deleteVocab('${v.id}')" title="Delete">×</button>
+    </li>
+  `).join('');
+}
+
+function handleAddVocab(e) {
+  e.preventDefault();
+  const fr = document.getElementById('input-fr').value.trim();
+  const en = document.getElementById('input-en').value.trim();
+  if (fr && en) {
+    addVocab(fr, en);
+    document.getElementById('input-fr').value = '';
+    document.getElementById('input-en').value = '';
+  }
+}
+
+// ─── Security helper ──────────────────────────────────────────────────────────
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+           .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+['daily','longterm','other'].forEach(renderTodos);
+renderStreak();
+renderVocab();
+</script>
+</body>
+</html>
