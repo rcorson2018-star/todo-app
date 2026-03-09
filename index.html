@@ -31,594 +31,273 @@
     z-index: 100;
   }
 
-  .site-header-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .site-header-brand { display: flex; align-items: center; gap: 10px; }
 
   .site-header-logo {
-    width: 28px;
-    height: 28px;
+    width: 28px; height: 28px;
     background: linear-gradient(135deg, #6366f1, #8b5cf6);
     border-radius: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: -0.5px;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #fff;
+    letter-spacing: -0.5px; flex-shrink: 0;
   }
 
-  .site-header-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #f8fafc;
-    letter-spacing: -0.3px;
-  }
-
-  .site-header-date {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #94a3b8;
-    letter-spacing: 0.2px;
-  }
+  .site-header-title { font-size: 1rem; font-weight: 700; color: #f8fafc; letter-spacing: -0.3px; }
+  .site-header-date  { font-size: 0.8rem; font-weight: 500; color: #94a3b8; letter-spacing: 0.2px; }
 
   /* ── Page body ───────────────────────────────────────────────────────────── */
-  .page-body {
-    padding: 28px 24px 40px;
-    max-width: 1140px;
-    margin: 0 auto;
-  }
+  .page-body { padding: 28px 24px 40px; max-width: 1140px; margin: 0 auto; }
 
   /* ── Grid ────────────────────────────────────────────────────────────────── */
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
     gap: 20px;
   }
 
   /* ── Quadrant card ───────────────────────────────────────────────────────── */
   .quadrant {
-    background: #ffffff;
+    background: #fff;
     border-radius: 14px;
     padding: 22px 22px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    display: flex; flex-direction: column; gap: 14px;
     min-height: 320px;
-    box-shadow:
-      0 1px 2px rgba(15, 23, 42, 0.04),
-      0 4px 12px rgba(15, 23, 42, 0.06),
-      0 12px 32px rgba(15, 23, 42, 0.05);
+    box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 4px 12px rgba(15,23,42,.06), 0 12px 32px rgba(15,23,42,.05);
     border-top: 4px solid transparent;
     transition: box-shadow 0.2s ease;
   }
 
   .quadrant:hover {
-    box-shadow:
-      0 1px 2px rgba(15, 23, 42, 0.05),
-      0 6px 18px rgba(15, 23, 42, 0.09),
-      0 18px 40px rgba(15, 23, 42, 0.07);
+    box-shadow: 0 1px 2px rgba(15,23,42,.05), 0 6px 18px rgba(15,23,42,.09), 0 18px 40px rgba(15,23,42,.07);
   }
 
   .q-daily    { border-top-color: #6366f1; }
   .q-longterm { border-top-color: #10b981; }
-  .q-other    { border-top-color: #f59e0b; }
+  .q-health   { border-top-color: #0ea5e9; }
   .q-french   { border-top-color: #f43f5e; }
 
   /* ── Quadrant header ─────────────────────────────────────────────────────── */
   .quadrant-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #f1f5f9;
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 12px; border-bottom: 1px solid #f1f5f9;
   }
 
-  .quadrant-title {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-  }
+  .quadrant-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
 
   .q-daily    .quadrant-title { color: #6366f1; }
   .q-longterm .quadrant-title { color: #10b981; }
-  .q-other    .quadrant-title { color: #f59e0b; }
+  .q-health   .quadrant-title { color: #0ea5e9; }
   .q-french   .quadrant-title { color: #f43f5e; }
 
-  /* ── Task count badge ────────────────────────────────────────────────────── */
+  /* ── Count badge ─────────────────────────────────────────────────────────── */
   .count-badge {
-    font-size: 0.7rem;
-    font-weight: 600;
-    background: #f1f5f9;
-    color: #64748b;
-    border-radius: 20px;
-    padding: 2px 8px;
-    margin-right: 6px;
-    letter-spacing: 0;
+    font-size: 0.7rem; font-weight: 600;
+    background: #f1f5f9; color: #64748b;
+    border-radius: 20px; padding: 2px 8px; margin-right: 6px;
   }
 
   /* ── Daily progress bar ──────────────────────────────────────────────────── */
-  .daily-progress-wrap {
-    height: 4px;
-    background: #e2e8f0;
-    border-radius: 2px;
-    overflow: hidden;
-    margin-top: -8px;
-  }
-
-  .daily-progress-bar {
-    height: 100%;
-    background: #6366f1;
-    border-radius: 2px;
-    width: 0%;
-    transition: width 0.4s ease;
-  }
+  .daily-progress-wrap { height: 4px; background: #e2e8f0; border-radius: 2px; overflow: hidden; margin-top: -8px; }
+  .daily-progress-bar  { height: 100%; background: #6366f1; border-radius: 2px; width: 0%; transition: width 0.4s ease; }
 
   /* ── Todo list ───────────────────────────────────────────────────────────── */
   .todo-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    flex: 1;
-    overflow-y: auto;
-    max-height: 220px;
+    list-style: none; display: flex; flex-direction: column; gap: 5px;
+    flex: 1; overflow-y: auto; max-height: 220px;
   }
 
   .todo-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 10px;
-    border-radius: 8px;
-    background: #f8fafc;
-    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-    cursor: default;
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px; border-radius: 8px; background: #f8fafc;
+    transition: background .15s, transform .15s, box-shadow .15s; cursor: default;
   }
 
-  .todo-item:hover {
-    background: #f0f4ff;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
-  }
+  .todo-item:hover                { background: #f0f4ff; transform: translateY(-1px); box-shadow: 0 2px 8px rgba(99,102,241,.08); }
+  .q-longterm .todo-item:hover   { background: #f0fdf8; box-shadow: 0 2px 8px rgba(16,185,129,.08); }
+  .q-health   .todo-item:hover   { background: #f0f9ff; box-shadow: 0 2px 8px rgba(14,165,233,.08); }
+  .q-french   .todo-item:hover   { background: #fff1f4; box-shadow: 0 2px 8px rgba(244,63,94,.08); }
 
-  .q-longterm .todo-item:hover {
-    background: #f0fdf8;
-    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
-  }
-
-  .q-other .todo-item:hover {
-    background: #fffbeb;
-    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.08);
-  }
-
-  .q-french .todo-item:hover {
-    background: #fff1f4;
-    box-shadow: 0 2px 8px rgba(244, 63, 94, 0.08);
-  }
-
-  /* Drag handle */
-  .drag-handle {
-    color: #cbd5e1;
-    cursor: grab;
-    font-size: 1rem;
-    flex-shrink: 0;
-    user-select: none;
-    line-height: 1;
-    padding: 0 2px;
-    transition: color 0.15s;
-  }
-
+  /* drag handle */
+  .drag-handle { color: #cbd5e1; cursor: grab; font-size: 1rem; flex-shrink: 0; user-select: none; line-height: 1; padding: 0 2px; transition: color .15s; }
   .drag-handle:active { cursor: grabbing; }
   .todo-item:hover .drag-handle { color: #94a3b8; }
-
-  .todo-item.drag-over {
-    outline: 2px dashed #6366f1;
-    outline-offset: -2px;
-    background: #eef2ff;
-  }
-
+  .todo-item.drag-over  { outline: 2px dashed #6366f1; outline-offset: -2px; background: #eef2ff; }
+  .todo-item.dragging   { opacity: 0.4; }
   .q-longterm .todo-item.drag-over { outline-color: #10b981; background: #ecfdf5; }
-  .q-other    .todo-item.drag-over { outline-color: #f59e0b; background: #fffbeb; }
+  .q-health   .todo-item.drag-over { outline-color: #0ea5e9; background: #f0f9ff; }
   .q-french   .todo-item.drag-over { outline-color: #f43f5e; background: #fff1f4; }
 
-  .todo-item.dragging { opacity: 0.4; }
-
-  /* ── Custom checkboxes ───────────────────────────────────────────────────── */
+  /* custom checkbox */
   .todo-item input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    min-width: 18px;
-    border-radius: 5px;
-    border: 2px solid #cbd5e1;
-    background: #fff;
-    cursor: pointer;
-    position: relative;
-    transition: background 0.15s ease, border-color 0.15s ease;
-    flex-shrink: 0;
+    appearance: none; -webkit-appearance: none;
+    width: 18px; height: 18px; min-width: 18px;
+    border-radius: 5px; border: 2px solid #cbd5e1; background: #fff;
+    cursor: pointer; position: relative;
+    transition: background .15s, border-color .15s; flex-shrink: 0;
   }
-
   .todo-item input[type="checkbox"]::after {
-    content: '';
-    position: absolute;
-    display: none;
-    left: 4px;
-    top: 1px;
-    width: 5px;
-    height: 9px;
-    border: 2px solid #fff;
-    border-top: none;
-    border-left: none;
+    content: ''; position: absolute; display: none;
+    left: 4px; top: 1px; width: 5px; height: 9px;
+    border: 2px solid #fff; border-top: none; border-left: none;
     transform: rotate(45deg);
   }
-
   .todo-item input[type="checkbox"]:checked::after { display: block; }
-
   .q-daily    .todo-item input[type="checkbox"]:checked { background: #6366f1; border-color: #6366f1; }
   .q-longterm .todo-item input[type="checkbox"]:checked { background: #10b981; border-color: #10b981; }
-  .q-other    .todo-item input[type="checkbox"]:checked { background: #f59e0b; border-color: #f59e0b; }
+  .q-health   .todo-item input[type="checkbox"]:checked { background: #0ea5e9; border-color: #0ea5e9; }
   .q-french   .todo-item input[type="checkbox"]:checked { background: #f43f5e; border-color: #f43f5e; }
-
   .todo-item input[type="checkbox"]:hover:not(:checked) { border-color: #94a3b8; }
 
-  /* ── Todo text ───────────────────────────────────────────────────────────── */
-  .todo-text {
-    flex: 1;
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: #334155;
-    word-break: break-word;
-    line-height: 1.4;
-  }
+  .todo-text { flex: 1; font-size: .875rem; font-weight: 400; color: #334155; word-break: break-word; line-height: 1.4; }
+  .todo-text.done { text-decoration: line-through; opacity: 0.4; }
 
-  .todo-text.done {
-    text-decoration: line-through;
-    opacity: 0.4;
-  }
-
-  /* ── Delete button ───────────────────────────────────────────────────────── */
-  .btn-delete {
-    background: none;
-    border: none;
-    color: #cbd5e1;
-    cursor: pointer;
-    font-size: 1.1rem;
-    line-height: 1;
-    padding: 2px 5px;
-    border-radius: 5px;
-    transition: color 0.15s ease, background 0.15s ease;
-    flex-shrink: 0;
-  }
-
+  /* delete / clear */
+  .btn-delete { background: none; border: none; color: #cbd5e1; cursor: pointer; font-size: 1.1rem; line-height: 1; padding: 2px 5px; border-radius: 5px; transition: color .15s, background .15s; flex-shrink: 0; }
   .btn-delete:hover { color: #f43f5e; background: #fff1f4; }
-
-  /* ── Clear done button ───────────────────────────────────────────────────── */
-  .btn-clear {
-    font-size: 0.7rem;
-    font-weight: 500;
-    padding: 4px 9px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 6px;
-    background: none;
-    cursor: pointer;
-    color: #94a3b8;
-    transition: all 0.15s ease;
-    letter-spacing: 0.1px;
-  }
-
+  .btn-clear { font-size: .7rem; font-weight: 500; padding: 4px 9px; border: 1.5px solid #e2e8f0; border-radius: 6px; background: none; cursor: pointer; color: #94a3b8; transition: all .15s; letter-spacing: .1px; }
   .btn-clear:hover { background: #f8fafc; color: #475569; border-color: #cbd5e1; }
 
   /* ── Input forms ─────────────────────────────────────────────────────────── */
   .todo-form { display: flex; gap: 8px; }
 
   .todo-input {
-    flex: 1;
-    padding: 8px 12px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    outline: none;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    background: #fafbfc;
-    color: #1e293b;
+    flex: 1; padding: 8px 12px;
+    border: 1.5px solid #e2e8f0; border-radius: 8px;
+    font-size: .85rem; font-family: 'Inter', sans-serif; font-weight: 400;
+    outline: none; transition: border-color .15s, box-shadow .15s;
+    background: #fafbfc; color: #1e293b;
   }
-
   .todo-input::placeholder { color: #94a3b8; }
   .todo-input:focus { background: #fff; border-color: transparent; }
+  .q-daily    .todo-input:focus { box-shadow: 0 0 0 3px rgba(99,102,241,.18);  border-color: #6366f1; }
+  .q-longterm .todo-input:focus { box-shadow: 0 0 0 3px rgba(16,185,129,.18);  border-color: #10b981; }
+  .q-health   .todo-input:focus { box-shadow: 0 0 0 3px rgba(14,165,233,.18);  border-color: #0ea5e9; }
+  .q-french   .todo-input:focus { box-shadow: 0 0 0 3px rgba(244,63,94,.18);   border-color: #f43f5e; }
 
-  .q-daily    .todo-input:focus { box-shadow: 0 0 0 3px rgba(99,102,241,0.18);  border-color: #6366f1; }
-  .q-longterm .todo-input:focus { box-shadow: 0 0 0 3px rgba(16,185,129,0.18);  border-color: #10b981; }
-  .q-other    .todo-input:focus { box-shadow: 0 0 0 3px rgba(245,158,11,0.18);  border-color: #f59e0b; }
-  .q-french   .todo-input:focus { box-shadow: 0 0 0 3px rgba(244,63,94,0.18);   border-color: #f43f5e; }
-
-  /* ── Add button ──────────────────────────────────────────────────────────── */
-  .btn-add {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    cursor: pointer;
-    color: #fff;
-    transition: filter 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
-    white-space: nowrap;
-  }
-
-  .btn-add:hover   { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-  .btn-add:active  { transform: translateY(0); filter: brightness(0.96); }
-
-  .q-daily    .btn-add { background: #6366f1; box-shadow: 0 2px 6px rgba(99,102,241,0.3); }
-  .q-longterm .btn-add { background: #10b981; box-shadow: 0 2px 6px rgba(16,185,129,0.3); }
-  .q-other    .btn-add { background: #f59e0b; box-shadow: 0 2px 6px rgba(245,158,11,0.3); }
-  .q-french   .btn-add { background: #f43f5e; box-shadow: 0 2px 6px rgba(244,63,94,0.3); }
+  .btn-add { padding: 8px 16px; border: none; border-radius: 8px; font-size: .85rem; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; color: #fff; transition: filter .15s, transform .1s, box-shadow .15s; white-space: nowrap; }
+  .btn-add:hover  { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+  .btn-add:active { transform: translateY(0); filter: brightness(.96); }
+  .q-daily    .btn-add { background: #6366f1; box-shadow: 0 2px 6px rgba(99,102,241,.3); }
+  .q-longterm .btn-add { background: #10b981; box-shadow: 0 2px 6px rgba(16,185,129,.3); }
+  .q-health   .btn-add { background: #0ea5e9; box-shadow: 0 2px 6px rgba(14,165,233,.3); }
+  .q-french   .btn-add { background: #f43f5e; box-shadow: 0 2px 6px rgba(244,63,94,.3); }
 
   /* ── Empty state ─────────────────────────────────────────────────────────── */
-  .empty-state {
-    color: #cbd5e1;
-    font-size: 0.82rem;
-    font-style: italic;
-    text-align: center;
-    padding: 24px 0 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-  }
+  .empty-state { color: #cbd5e1; font-size: .82rem; font-style: italic; text-align: center; padding: 24px 0 16px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .empty-state::before { content: '○'; font-size: 1.1rem; font-style: normal; color: #e2e8f0; }
 
-  .empty-state::before {
-    content: '○';
-    font-size: 1.1rem;
-    font-style: normal;
-    color: #e2e8f0;
-  }
-
-  /* ── French streak box ───────────────────────────────────────────────────── */
-  .streak-box {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: linear-gradient(135deg, #fff1f4 0%, #fef2f2 100%);
-    border: 1.5px solid #fecdd3;
-    border-radius: 12px;
-    padding: 14px 18px;
-    box-shadow: 0 2px 8px rgba(244, 63, 94, 0.08);
-  }
-
-  .streak-icon {
-    font-size: 2.2rem;
-    line-height: 1;
-    filter: drop-shadow(0 2px 6px rgba(244, 63, 94, 0.35));
-  }
-
+  /* ── French streak ───────────────────────────────────────────────────────── */
+  .streak-box { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg,#fff1f4,#fef2f2); border: 1.5px solid #fecdd3; border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 8px rgba(244,63,94,.08); }
+  .streak-icon { font-size: 2.2rem; line-height: 1; filter: drop-shadow(0 2px 6px rgba(244,63,94,.35)); }
   .streak-number-wrap { display: flex; flex-direction: column; line-height: 1; }
+  .streak-count { font-size: 2rem; font-weight: 700; color: #f43f5e; letter-spacing: -1px; line-height: 1; }
+  .streak-label { font-size: .72rem; font-weight: 500; color: #fda4af; letter-spacing: .3px; margin-top: 3px; text-transform: uppercase; }
+  .streak-done-badge { margin-left: auto; font-size: .72rem; font-weight: 600; background: #dcfce7; color: #16a34a; border-radius: 20px; padding: 4px 10px; white-space: nowrap; }
 
-  .streak-count {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #f43f5e;
-    letter-spacing: -1px;
-    line-height: 1;
-  }
+  .btn-practice { width: 100%; padding: 10px; border: none; border-radius: 9px; font-size: .875rem; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; background: #f43f5e; color: #fff; box-shadow: 0 2px 8px rgba(244,63,94,.3); transition: filter .15s, transform .1s, box-shadow .15s; }
+  .btn-practice:hover:not(:disabled) { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(244,63,94,.35); }
+  .btn-practice:active:not(:disabled) { transform: translateY(0); filter: brightness(.96); }
+  .btn-practice:disabled { background: #f1f5f9; color: #94a3b8; cursor: default; box-shadow: none; }
 
-  .streak-label {
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: #fda4af;
-    letter-spacing: 0.3px;
-    margin-top: 3px;
-    text-transform: uppercase;
-  }
-
-  .streak-done-badge {
-    margin-left: auto;
-    font-size: 0.72rem;
-    font-weight: 600;
-    background: #dcfce7;
-    color: #16a34a;
-    border-radius: 20px;
-    padding: 4px 10px;
-    letter-spacing: 0.2px;
-    white-space: nowrap;
-  }
-
-  /* ── Practice button ─────────────────────────────────────────────────────── */
-  .btn-practice {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 9px;
-    font-size: 0.875rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    cursor: pointer;
-    background: #f43f5e;
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(244, 63, 94, 0.3);
-    transition: filter 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
-  }
-
-  .btn-practice:hover:not(:disabled) {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(244, 63, 94, 0.35);
-  }
-
-  .btn-practice:active:not(:disabled) { transform: translateY(0); filter: brightness(0.96); }
-
-  .btn-practice:disabled {
-    background: #f1f5f9;
-    color: #94a3b8;
-    cursor: default;
-    box-shadow: none;
-  }
-
-  /* ── Vocab section ───────────────────────────────────────────────────────── */
+  /* ── Vocab ───────────────────────────────────────────────────────────────── */
   .vocab-section { display: flex; flex-direction: column; gap: 10px; }
-
-  .vocab-section-title {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #94a3b8;
-  }
-
-  .vocab-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    max-height: 130px;
-    overflow-y: auto;
-  }
-
-  .vocab-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #f8fafc;
-    border-radius: 8px;
-    padding: 7px 10px;
-    font-size: 0.85rem;
-    transition: background 0.15s ease, transform 0.15s ease;
-  }
-
+  .vocab-section-title { font-size: .68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #94a3b8; }
+  .vocab-list { list-style: none; display: flex; flex-direction: column; gap: 5px; max-height: 110px; overflow-y: auto; }
+  .vocab-item { display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border-radius: 8px; padding: 7px 10px; font-size: .85rem; transition: background .15s, transform .15s; }
   .vocab-item:hover { background: #fff1f4; transform: translateY(-1px); }
-
   .vocab-fr { font-weight: 600; color: #f43f5e; }
   .vocab-arrow { color: #cbd5e1; margin: 0 5px; }
   .vocab-en { color: #64748b; }
-
   .vocab-form { display: flex; gap: 6px; }
-
-  .vocab-form input {
-    flex: 1;
-    padding: 7px 10px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    font-family: 'Inter', sans-serif;
-    outline: none;
-    background: #fafbfc;
-    color: #1e293b;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    min-width: 0;
-  }
-
+  .vocab-form input { flex: 1; padding: 7px 10px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: .8rem; font-family: 'Inter', sans-serif; outline: none; background: #fafbfc; color: #1e293b; transition: border-color .15s, box-shadow .15s; min-width: 0; }
   .vocab-form input::placeholder { color: #94a3b8; }
-  .vocab-form input:focus { border-color: #f43f5e; background: #fff; box-shadow: 0 0 0 3px rgba(244,63,94,0.15); }
+  .vocab-form input:focus { border-color: #f43f5e; background: #fff; box-shadow: 0 0 0 3px rgba(244,63,94,.15); }
 
   /* ── Quiz ────────────────────────────────────────────────────────────────── */
-  .btn-quiz {
-    width: 100%;
-    padding: 8px;
-    border: 1.5px solid #f43f5e;
-    border-radius: 9px;
-    font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    cursor: pointer;
-    background: #fff;
-    color: #f43f5e;
-    transition: background 0.15s, color 0.15s;
-  }
-
+  .btn-quiz { width: 100%; padding: 8px; border: 1.5px solid #f43f5e; border-radius: 9px; font-size: .85rem; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; background: #fff; color: #f43f5e; transition: background .15s; }
   .btn-quiz:hover { background: #fff1f4; }
-
-  #quiz-panel {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    background: linear-gradient(135deg, #fff1f4 0%, #fef2f2 100%);
-    border: 1.5px solid #fecdd3;
-    border-radius: 12px;
-    padding: 16px;
-  }
-
+  #quiz-panel { display: none; flex-direction: column; gap: 10px; background: linear-gradient(135deg,#fff1f4,#fef2f2); border: 1.5px solid #fecdd3; border-radius: 12px; padding: 16px; }
   #quiz-panel.active { display: flex; }
-
-  .quiz-word {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #f43f5e;
-    text-align: center;
-    letter-spacing: -0.5px;
-  }
-
-  .quiz-translation {
-    font-size: 1rem;
-    color: #475569;
-    text-align: center;
-    min-height: 1.5em;
-    font-weight: 500;
-  }
-
+  .quiz-word { font-size: 1.4rem; font-weight: 700; color: #f43f5e; text-align: center; letter-spacing: -.5px; }
+  .quiz-translation { font-size: 1rem; color: #475569; text-align: center; min-height: 1.5em; font-weight: 500; }
   .quiz-actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-
-  .quiz-actions button {
-    padding: 6px 16px;
-    border-radius: 7px;
-    border: none;
-    font-size: 0.82rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    cursor: pointer;
-    transition: filter 0.15s, transform 0.1s;
-  }
-
+  .quiz-actions button { padding: 6px 16px; border-radius: 7px; border: none; font-size: .82rem; font-family: 'Inter', sans-serif; font-weight: 600; cursor: pointer; transition: filter .15s, transform .1s; }
   .quiz-actions button:hover { filter: brightness(1.07); transform: translateY(-1px); }
-
-  #btn-quiz-reveal { background: #f43f5e; color: #fff; }
+  #btn-quiz-reveal  { background: #f43f5e; color: #fff; }
   #btn-quiz-correct { background: #10b981; color: #fff; display: none; }
   #btn-quiz-wrong   { background: #f59e0b; color: #fff; display: none; }
   #btn-quiz-close   { background: #e2e8f0; color: #475569; }
+  .quiz-progress { font-size: .72rem; color: #94a3b8; text-align: center; }
+  .quiz-complete { font-size: 1rem; font-weight: 700; color: #10b981; text-align: center; padding: 4px 0; }
 
-  .quiz-progress { font-size: 0.72rem; color: #94a3b8; text-align: center; }
-  .quiz-complete  { font-size: 1rem; font-weight: 700; color: #10b981; text-align: center; padding: 4px 0; }
-
-  /* ── Toast ───────────────────────────────────────────────────────────────── */
-  #toast {
-    position: fixed;
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #0f172a;
-    color: #f8fafc;
-    padding: 10px 20px;
-    border-radius: 9px;
-    font-size: 0.85rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.35s;
-    z-index: 9999;
-    white-space: nowrap;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  /* ── Health tracker ──────────────────────────────────────────────────────── */
+  .meal-prompt {
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+    border: 1.5px solid #bae6fd;
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex; flex-direction: column; gap: 8px;
   }
 
+  .meal-prompt-top {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: .85rem; font-weight: 600; color: #0369a1;
+  }
+
+  .meal-dismiss {
+    font-size: .72rem; background: none; border: none;
+    color: #7dd3fc; cursor: pointer; padding: 2px 6px; border-radius: 4px;
+    transition: color .15s;
+  }
+  .meal-dismiss:hover { color: #0ea5e9; }
+
+  .meal-form { display: flex; gap: 6px; }
+  .meal-form .todo-input { font-size: .82rem; padding: 6px 10px; }
+  .meal-form .btn-add { padding: 6px 12px; font-size: .82rem; }
+
+  .feeling-section {
+    display: flex; align-items: center; gap: 10px;
+    background: #f8fafc; border-radius: 8px; padding: 8px 12px;
+  }
+
+  .feeling-label {
+    font-size: .68rem; font-weight: 700; letter-spacing: .8px;
+    text-transform: uppercase; color: #94a3b8; white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .feeling-row { display: flex; gap: 2px; flex: 1; justify-content: flex-end; }
+
+  .feeling-btn {
+    background: none; border: 1.5px solid transparent; border-radius: 8px;
+    font-size: 1.25rem; cursor: pointer; padding: 3px 6px;
+    transition: background .15s, border-color .15s, transform .1s; line-height: 1;
+  }
+  .feeling-btn:hover { background: #e0f2fe; border-color: #bae6fd; transform: scale(1.2); }
+
+  .health-log-wrap { display: flex; flex-direction: column; gap: 6px; flex: 1; min-height: 0; }
+
+  .health-log-header { display: flex; align-items: center; justify-content: space-between; }
+
+  .health-log-title { font-size: .68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #94a3b8; }
+
+  .health-log-list { list-style: none; display: flex; flex-direction: column; gap: 4px; max-height: 180px; overflow-y: auto; }
+
+  .health-entry { display: flex; align-items: flex-start; gap: 8px; padding: 7px 10px; border-radius: 8px; background: #f8fafc; transition: background .15s; }
+  .health-entry:hover { background: #f0f9ff; }
+  .health-entry-icon { font-size: .9rem; flex-shrink: 0; margin-top: 1px; }
+  .health-entry-content { flex: 1; min-width: 0; }
+  .health-entry-text { font-size: .82rem; color: #334155; word-break: break-word; line-height: 1.3; }
+  .health-entry-meta { font-size: .68rem; color: #94a3b8; margin-top: 2px; }
+
+  /* ── Toast ───────────────────────────────────────────────────────────────── */
+  #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); background: #0f172a; color: #f8fafc; padding: 10px 20px; border-radius: 9px; font-size: .85rem; font-family: 'Inter', sans-serif; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity .35s; z-index: 9999; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
   #toast.show { opacity: 1; }
 
   /* ── Scrollbars ──────────────────────────────────────────────────────────── */
-  .todo-list::-webkit-scrollbar,
-  .vocab-list::-webkit-scrollbar { width: 4px; }
-  .todo-list::-webkit-scrollbar-track,
-  .vocab-list::-webkit-scrollbar-track { background: transparent; }
-  .todo-list::-webkit-scrollbar-thumb,
-  .vocab-list::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
-  .todo-list::-webkit-scrollbar-thumb:hover,
-  .vocab-list::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+  .todo-list::-webkit-scrollbar, .vocab-list::-webkit-scrollbar, .health-log-list::-webkit-scrollbar { width: 4px; }
+  .todo-list::-webkit-scrollbar-track, .vocab-list::-webkit-scrollbar-track, .health-log-list::-webkit-scrollbar-track { background: transparent; }
+  .todo-list::-webkit-scrollbar-thumb, .vocab-list::-webkit-scrollbar-thumb, .health-log-list::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
 
   /* ── Mobile ──────────────────────────────────────────────────────────────── */
   @media (max-width: 768px) {
@@ -627,7 +306,7 @@
     .grid { grid-template-columns: 1fr; }
     .quadrant { min-height: auto; }
     .streak-count { font-size: 1.6rem; }
-    .streak-icon { font-size: 1.8rem; }
+    .streak-icon  { font-size: 1.8rem; }
   }
 </style>
 </head>
@@ -678,17 +357,50 @@
       </form>
     </div>
 
-    <!-- OTHER -->
-    <div class="quadrant q-other">
+    <!-- HEALTH -->
+    <div class="quadrant q-health">
       <div class="quadrant-header">
-        <span class="quadrant-title">Other</span>
-        <span class="count-badge" id="badge-other" style="display:none"></span>
+        <span class="quadrant-title">Health</span>
+        <button class="btn-clear" id="health-history-btn" onclick="toggleHealthHistory()">History</button>
       </div>
-      <ul class="todo-list" id="list-other"></ul>
-      <form class="todo-form" onsubmit="handleAdd(event,'other')">
-        <input class="todo-input" id="input-other" placeholder="Add a note…" autocomplete="off">
+
+      <!-- Meal prompt (conditional) -->
+      <div class="meal-prompt" id="meal-prompt" style="display:none">
+        <div class="meal-prompt-top">
+          <span id="meal-prompt-label">🍳 Breakfast time</span>
+          <button class="meal-dismiss" onclick="dismissMealPrompt()">Skip</button>
+        </div>
+        <form class="meal-form" onsubmit="logMeal(event)">
+          <input class="todo-input" id="meal-input" placeholder="What did you eat or drink?" autocomplete="off">
+          <button class="btn-add" type="submit">Log</button>
+        </form>
+      </div>
+
+      <!-- Feeling row -->
+      <div class="feeling-section">
+        <span class="feeling-label">Feeling?</span>
+        <div class="feeling-row">
+          <button class="feeling-btn" title="Great"  onclick="logFeeling(5,'😄')">😄</button>
+          <button class="feeling-btn" title="Good"   onclick="logFeeling(4,'🙂')">🙂</button>
+          <button class="feeling-btn" title="Okay"   onclick="logFeeling(3,'😐')">😐</button>
+          <button class="feeling-btn" title="Low"    onclick="logFeeling(2,'😕')">😕</button>
+          <button class="feeling-btn" title="Rough"  onclick="logFeeling(1,'😣')">😣</button>
+        </div>
+      </div>
+
+      <!-- Symptom / note input -->
+      <form class="todo-form" onsubmit="logSymptom(event)">
+        <input class="todo-input" id="symptom-input" placeholder="Log a symptom or note…" autocomplete="off">
         <button class="btn-add" type="submit">Add</button>
       </form>
+
+      <!-- Log list -->
+      <div class="health-log-wrap">
+        <div class="health-log-header">
+          <span class="health-log-title" id="health-log-title">Today's log</span>
+        </div>
+        <ul class="health-log-list" id="health-log-list"></ul>
+      </div>
     </div>
 
     <!-- FRANÇAIS -->
@@ -715,10 +427,10 @@
         <div class="quiz-word" id="quiz-word"></div>
         <div class="quiz-translation" id="quiz-translation"></div>
         <div class="quiz-actions">
-          <button id="btn-quiz-reveal" onclick="revealQuiz()">Reveal</button>
+          <button id="btn-quiz-reveal"  onclick="revealQuiz()">Reveal</button>
           <button id="btn-quiz-correct" onclick="answerQuiz(true)">Got it ✓</button>
-          <button id="btn-quiz-wrong" onclick="answerQuiz(false)">Try again ✗</button>
-          <button id="btn-quiz-close" onclick="closeQuiz()">Close</button>
+          <button id="btn-quiz-wrong"   onclick="answerQuiz(false)">Try again ✗</button>
+          <button id="btn-quiz-close"   onclick="closeQuiz()">Close</button>
         </div>
       </div>
 
@@ -737,16 +449,33 @@
 </div>
 
 <script>
+// ─── Time utilities (Eastern Time) ────────────────────────────────────────────
+function today() {
+  // Returns YYYY-MM-DD in Eastern Time
+  return new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+}
+
+function getETHour() {
+  return parseInt(new Date().toLocaleTimeString('en-US', {
+    timeZone: 'America/New_York', hour: '2-digit', hourCycle: 'h23'
+  }), 10);
+}
+
+function getETDayOfWeek() {
+  // 0=Sun, 1=Mon, ..., 6=Sat
+  const s = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+  const [y, m, d] = s.split('-').map(Number);
+  return new Date(y, m - 1, d).getDay();
+}
+
 // ─── Utils ────────────────────────────────────────────────────────────────────
 function uid() { return Math.random().toString(36).slice(2, 10); }
-function today() { return new Date().toISOString().slice(0, 10); }
 
 function escHtml(s) {
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
            .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
-// ─── Toast ────────────────────────────────────────────────────────────────────
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -787,109 +516,244 @@ function clearCompleted(key) {
   renderTodos(key);
 }
 
-// ─── Badge + Progress bar ─────────────────────────────────────────────────────
+// ─── Badge + progress bar ─────────────────────────────────────────────────────
 function updateBadge(key) {
   const todos = loadTodos(key);
-  const total = todos.length;
-  const done = todos.filter(t => t.done).length;
+  const total = todos.length, done = todos.filter(t => t.done).length;
   const badge = document.getElementById('badge-' + key);
-  if (badge) {
-    badge.style.display = total === 0 ? 'none' : '';
-    if (total > 0) badge.textContent = done + ' / ' + total;
-  }
+  if (badge) { badge.style.display = total === 0 ? 'none' : ''; if (total) badge.textContent = done + ' / ' + total; }
   if (key === 'daily') {
     const bar = document.getElementById('daily-progress-bar');
-    if (bar) bar.style.width = (total === 0 ? 0 : Math.round((done / total) * 100)) + '%';
+    if (bar) bar.style.width = (total === 0 ? 0 : Math.round(done / total * 100)) + '%';
   }
 }
 
-// ─── Drag-and-drop state ──────────────────────────────────────────────────────
-let dragSrcKey = null;
-let dragSrcId  = null;
+// ─── Drag-and-drop ────────────────────────────────────────────────────────────
+let dragSrcKey = null, dragSrcId = null;
 
-function onDragStart(e) {
-  dragSrcKey = this.dataset.key;
-  dragSrcId  = this.dataset.id;
-  this.classList.add('dragging');
-  e.dataTransfer.effectAllowed = 'move';
-}
-
-function onDragOver(e) {
-  e.preventDefault();
-  e.dataTransfer.dropEffect = 'move';
-  if (this.dataset.key === dragSrcKey && this.dataset.id !== dragSrcId) {
-    this.classList.add('drag-over');
-  }
-}
-
-function onDragLeave() { this.classList.remove('drag-over'); }
+function onDragStart(e) { dragSrcKey = this.dataset.key; dragSrcId = this.dataset.id; this.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
+function onDragOver(e)  { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; if (this.dataset.key === dragSrcKey && this.dataset.id !== dragSrcId) this.classList.add('drag-over'); }
+function onDragLeave()  { this.classList.remove('drag-over'); }
+function onDragEnd()    { document.querySelectorAll('.todo-item').forEach(el => el.classList.remove('dragging','drag-over')); }
 
 function onDrop(e) {
-  e.stopPropagation();
-  this.classList.remove('drag-over');
-  const targetKey = this.dataset.key;
-  const targetId  = this.dataset.id;
-  if (dragSrcKey !== targetKey || dragSrcId === targetId) return;
-  const todos = loadTodos(targetKey);
-  const srcIdx = todos.findIndex(t => t.id === dragSrcId);
-  const tgtIdx = todos.findIndex(t => t.id === targetId);
-  if (srcIdx === -1 || tgtIdx === -1) return;
-  const [moved] = todos.splice(srcIdx, 1);
-  todos.splice(tgtIdx, 0, moved);
-  saveTodos(targetKey, todos);
-  renderTodos(targetKey);
-}
-
-function onDragEnd() {
-  document.querySelectorAll('.todo-item').forEach(el => el.classList.remove('dragging','drag-over'));
+  e.stopPropagation(); this.classList.remove('drag-over');
+  const tKey = this.dataset.key, tId = this.dataset.id;
+  if (dragSrcKey !== tKey || dragSrcId === tId) return;
+  const todos = loadTodos(tKey);
+  const si = todos.findIndex(t => t.id === dragSrcId), ti = todos.findIndex(t => t.id === tId);
+  if (si === -1 || ti === -1) return;
+  const [moved] = todos.splice(si, 1); todos.splice(ti, 0, moved);
+  saveTodos(tKey, todos); renderTodos(tKey);
 }
 
 // ─── Render todos ─────────────────────────────────────────────────────────────
 function renderTodos(key) {
-  const list  = document.getElementById('list-' + key);
+  const list = document.getElementById('list-' + key);
   const todos = loadTodos(key);
   updateBadge(key);
-  if (!todos.length) {
-    list.innerHTML = '<li class="empty-state">Nothing here yet</li>';
-    return;
-  }
+  if (!todos.length) { list.innerHTML = '<li class="empty-state">Nothing here yet</li>'; return; }
   list.innerHTML = todos.map(t => `
     <li class="todo-item" draggable="true" data-id="${t.id}" data-key="${key}">
       <span class="drag-handle" title="Reorder">&#10783;</span>
       <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTodo('${key}','${t.id}')">
       <span class="todo-text ${t.done ? 'done' : ''}">${escHtml(t.text)}</span>
       <button class="btn-delete" onclick="deleteTodo('${key}','${t.id}')" title="Delete">×</button>
-    </li>
-  `).join('');
+    </li>`).join('');
   list.querySelectorAll('.todo-item').forEach(item => {
-    item.addEventListener('dragstart',  onDragStart);
-    item.addEventListener('dragover',   onDragOver);
-    item.addEventListener('dragleave',  onDragLeave);
-    item.addEventListener('drop',       onDrop);
-    item.addEventListener('dragend',    onDragEnd);
+    item.addEventListener('dragstart', onDragStart);
+    item.addEventListener('dragover',  onDragOver);
+    item.addEventListener('dragleave', onDragLeave);
+    item.addEventListener('drop',      onDrop);
+    item.addEventListener('dragend',   onDragEnd);
   });
 }
 
 function handleAdd(e, key) {
   e.preventDefault();
   const input = document.getElementById('input-' + key);
-  const text  = input.value.trim();
+  const text = input.value.trim();
   if (text) { addTodo(key, text); input.value = ''; }
 }
 
-// ─── Daily auto-reset ─────────────────────────────────────────────────────────
+// ─── Daily reset + seeding ────────────────────────────────────────────────────
+const LIFT_DAYS = [1, 2, 4, 5]; // Mon, Tue, Thu, Fri
+
+function seedDailyTasks() {
+  const day = getETDayOfWeek();
+  const defaults = LIFT_DAYS.includes(day) ? ['Lift', 'Cardio', 'Stretch'] : ['Stretch'];
+  const existing = loadTodos('daily');
+  const existingTexts = existing.map(t => t.text);
+  const toAdd = defaults.filter(t => !existingTexts.includes(t));
+  if (toAdd.length) {
+    saveTodos('daily', [...toAdd.map(text => ({ id: uid(), text, done: false })), ...existing]);
+  }
+}
+
+function performDailyReset() {
+  const t = today();
+  const todos = loadTodos('daily');
+  todos.forEach(task => { task.done = false; });
+  saveTodos('daily', todos);
+  localStorage.setItem('daily_last_reset', t);
+  seedDailyTasks();
+  renderTodos('daily');
+  showToast('Good morning! Daily tasks reset ☀️');
+}
+
 function checkDailyReset() {
   const t = today();
   const lastReset = localStorage.getItem('daily_last_reset');
   if (lastReset !== t) {
     const todos = loadTodos('daily');
-    let changed = false;
-    todos.forEach(task => { if (task.done) { task.done = false; changed = true; } });
-    if (changed) saveTodos('daily', todos);
+    todos.forEach(task => { task.done = false; });
+    saveTodos('daily', todos);
     localStorage.setItem('daily_last_reset', t);
-    if (changed) showToast('Daily tasks reset');
+    seedDailyTasks();
+    if (lastReset) showToast('Good morning! Daily tasks reset ☀️');
   }
 }
+
+function scheduleMidnightWatcher() {
+  // Check every minute if the ET date has rolled over
+  setInterval(() => {
+    const t = today();
+    if (localStorage.getItem('daily_last_reset') !== t) performDailyReset();
+  }, 60000);
+}
+
+// ─── Health tracker ───────────────────────────────────────────────────────────
+const MEAL_WINDOWS = [
+  { type: 'breakfast', label: '🍳 Breakfast time', start: 6,  end: 10 },
+  { type: 'lunch',     label: '🥗 Lunch time',     start: 11, end: 14 },
+  { type: 'snack',     label: '🍎 Snack time',     start: 14, end: 17 },
+  { type: 'dinner',    label: '🍽 Dinner time',    start: 17, end: 21 },
+];
+
+function getCurrentMealWindow() {
+  const h = getETHour();
+  return MEAL_WINDOWS.find(w => h >= w.start && h < w.end) || null;
+}
+
+function loadHealthLog() {
+  try { return JSON.parse(localStorage.getItem('health_log')) || []; }
+  catch { return []; }
+}
+
+function saveHealthLog(log) { localStorage.setItem('health_log', JSON.stringify(log)); }
+
+function addHealthEntry(entry) {
+  const log = loadHealthLog();
+  log.push({ id: uid(), date: today(), timestamp: Date.now(), ...entry });
+  saveHealthLog(log);
+  renderHealthLog();
+}
+
+function deleteHealthEntry(id) {
+  saveHealthLog(loadHealthLog().filter(e => e.id !== id));
+  renderHealthLog();
+}
+
+function renderMealPrompt() {
+  const prompt = document.getElementById('meal-prompt');
+  const mw = getCurrentMealWindow();
+  if (!mw) { prompt.style.display = 'none'; return; }
+
+  // Check dismissed
+  let dismissed = {};
+  try { dismissed = JSON.parse(localStorage.getItem('health_meal_dismissed')) || {}; } catch {}
+  if (dismissed[today()] === mw.type) { prompt.style.display = 'none'; return; }
+
+  // Check already logged this meal today
+  const logged = loadHealthLog().some(e => e.date === today() && e.type === 'meal' && e.mealType === mw.type);
+  if (logged) { prompt.style.display = 'none'; return; }
+
+  document.getElementById('meal-prompt-label').textContent = mw.label;
+  prompt.style.display = '';
+}
+
+function dismissMealPrompt() {
+  const mw = getCurrentMealWindow(); if (!mw) return;
+  let dismissed = {};
+  try { dismissed = JSON.parse(localStorage.getItem('health_meal_dismissed')) || {}; } catch {}
+  dismissed[today()] = mw.type;
+  localStorage.setItem('health_meal_dismissed', JSON.stringify(dismissed));
+  document.getElementById('meal-prompt').style.display = 'none';
+}
+
+function logMeal(e) {
+  e.preventDefault();
+  const input = document.getElementById('meal-input');
+  const text = input.value.trim();
+  if (!text) return;
+  const mw = getCurrentMealWindow();
+  addHealthEntry({ type: 'meal', mealType: mw ? mw.type : 'meal', text });
+  input.value = '';
+  renderMealPrompt();
+}
+
+function logFeeling(rating, emoji) {
+  const labels = ['', 'rough', 'low', 'okay', 'good', 'great'];
+  addHealthEntry({ type: 'feeling', rating, text: emoji + '  Feeling ' + labels[rating] });
+  showToast('Logged — feeling ' + labels[rating]);
+}
+
+function logSymptom(e) {
+  e.preventDefault();
+  const input = document.getElementById('symptom-input');
+  const text = input.value.trim();
+  if (!text) return;
+  addHealthEntry({ type: 'symptom', text });
+  input.value = '';
+}
+
+let showingHealthHistory = false;
+
+function toggleHealthHistory() {
+  showingHealthHistory = !showingHealthHistory;
+  document.getElementById('health-history-btn').textContent  = showingHealthHistory ? 'Today'   : 'History';
+  document.getElementById('health-log-title').textContent    = showingHealthHistory ? 'Past 7 days' : "Today's log";
+  renderHealthLog();
+}
+
+function renderHealthLog() {
+  const list = document.getElementById('health-log-list');
+  const t = today();
+  const log = loadHealthLog();
+
+  let entries;
+  if (showingHealthHistory) {
+    const cutoff = new Date(t); cutoff.setDate(cutoff.getDate() - 7);
+    const cutoffStr = cutoff.toISOString().slice(0, 10);
+    entries = log.filter(e => e.date >= cutoffStr).reverse();
+  } else {
+    entries = log.filter(e => e.date === t).reverse();
+  }
+
+  if (!entries.length) { list.innerHTML = '<li class="empty-state">Nothing logged yet</li>'; return; }
+
+  const icon = { meal: '🍽', feeling: '💭', symptom: '📋' };
+
+  list.innerHTML = entries.map(e => {
+    const time = new Date(e.timestamp).toLocaleTimeString('en-US', {
+      timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit', hour12: true
+    });
+    const datePrefix = (showingHealthHistory && e.date !== t)
+      ? new Date(e.date + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' · '
+      : '';
+    return `<li class="health-entry">
+      <span class="health-entry-icon">${icon[e.type] || '📝'}</span>
+      <div class="health-entry-content">
+        <div class="health-entry-text">${escHtml(e.text)}</div>
+        <div class="health-entry-meta">${datePrefix}${time}</div>
+      </div>
+      <button class="btn-delete" onclick="deleteHealthEntry('${e.id}')" title="Delete">×</button>
+    </li>`;
+  }).join('');
+}
+
+// Re-check meal prompt every 5 minutes in case a window opens
+setInterval(renderMealPrompt, 300000);
 
 // ─── French streak ────────────────────────────────────────────────────────────
 function loadStreak() {
@@ -900,21 +764,16 @@ function loadStreak() {
 function saveStreak(s) { localStorage.setItem('french_streak', JSON.stringify(s)); }
 
 function markPractice() {
-  const s = loadStreak();
-  const t = today();
+  const s = loadStreak(), t = today();
   if (s.lastDate === t) return;
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  const yStr = yesterday.toISOString().slice(0, 10);
+  const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+  const yStr = yesterday.toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
   s.count = (s.lastDate === yStr) ? s.count + 1 : 1;
-  s.lastDate = t;
-  saveStreak(s);
-  renderStreak();
+  s.lastDate = t; saveStreak(s); renderStreak();
 }
 
 function renderStreak() {
-  const s = loadStreak();
-  const t = today();
+  const s = loadStreak(), t = today();
   if (s.lastDate && s.lastDate !== t) {
     const diff = Math.floor((new Date(t) - new Date(s.lastDate)) / 86400000);
     if (diff > 1) { s.count = 0; saveStreak(s); }
@@ -933,60 +792,35 @@ function loadVocab() {
 
 function saveVocab(v) { localStorage.setItem('french_vocab', JSON.stringify(v)); }
 
-function addVocab(fr, en) {
-  const vocab = loadVocab();
-  vocab.push({ id: uid(), fr, en });
-  saveVocab(vocab);
-  renderVocab();
-}
-
-function deleteVocab(id) {
-  saveVocab(loadVocab().filter(v => v.id !== id));
-  renderVocab();
-}
+function addVocab(fr, en) { const v = loadVocab(); v.push({ id: uid(), fr, en }); saveVocab(v); renderVocab(); }
+function deleteVocab(id)   { saveVocab(loadVocab().filter(v => v.id !== id)); renderVocab(); }
 
 function renderVocab() {
-  const list  = document.getElementById('vocab-list');
+  const list = document.getElementById('vocab-list');
   const vocab = loadVocab();
-  if (!vocab.length) {
-    list.innerHTML = '<li class="empty-state">No words yet</li>';
-    return;
-  }
+  if (!vocab.length) { list.innerHTML = '<li class="empty-state">No words yet</li>'; return; }
   list.innerHTML = vocab.map(v => `
     <li class="vocab-item">
-      <span>
-        <span class="vocab-fr">${escHtml(v.fr)}</span>
-        <span class="vocab-arrow">→</span>
-        <span class="vocab-en">${escHtml(v.en)}</span>
-      </span>
+      <span><span class="vocab-fr">${escHtml(v.fr)}</span><span class="vocab-arrow">→</span><span class="vocab-en">${escHtml(v.en)}</span></span>
       <button class="btn-delete" onclick="deleteVocab('${v.id}')" title="Delete">×</button>
-    </li>
-  `).join('');
+    </li>`).join('');
 }
 
 function handleAddVocab(e) {
   e.preventDefault();
   const fr = document.getElementById('input-fr').value.trim();
   const en = document.getElementById('input-en').value.trim();
-  if (fr && en) {
-    addVocab(fr, en);
-    document.getElementById('input-fr').value = '';
-    document.getElementById('input-en').value = '';
-  }
+  if (fr && en) { addVocab(fr, en); document.getElementById('input-fr').value = ''; document.getElementById('input-en').value = ''; }
 }
 
-// ─── Quiz mode ────────────────────────────────────────────────────────────────
-let quizQueue   = [];
-let quizCorrect = 0;
-let quizTotal   = 0;
-let quizCurrent = null;
+// ─── Quiz ─────────────────────────────────────────────────────────────────────
+let quizQueue = [], quizCorrect = 0, quizTotal = 0, quizCurrent = null;
 
 function startQuiz() {
   const vocab = loadVocab();
   if (!vocab.length) { showToast('Add some words first!'); return; }
-  quizQueue   = vocab.slice().sort(() => Math.random() - 0.5);
-  quizCorrect = 0;
-  quizTotal   = quizQueue.length;
+  quizQueue = vocab.slice().sort(() => Math.random() - 0.5);
+  quizCorrect = 0; quizTotal = quizQueue.length;
   document.getElementById('btn-quiz-start').style.display = 'none';
   document.getElementById('quiz-panel').classList.add('active');
   nextQuizWord();
@@ -1012,19 +846,13 @@ function revealQuiz() {
   document.getElementById('btn-quiz-wrong').style.display   = '';
 }
 
-function answerQuiz(correct) {
-  if (correct) { quizCorrect++; }
-  else { quizQueue.push(quizCurrent); }
-  nextQuizWord();
-}
+function answerQuiz(correct) { if (correct) quizCorrect++; else quizQueue.push(quizCurrent); nextQuizWord(); }
 
 function showQuizComplete() {
   document.getElementById('quiz-word').innerHTML          = '<span class="quiz-complete">Quiz complete! 🎉</span>';
   document.getElementById('quiz-translation').textContent = quizCorrect + ' / ' + quizTotal + ' correct';
   document.getElementById('quiz-progress').textContent    = '';
-  document.getElementById('btn-quiz-reveal').style.display  = 'none';
-  document.getElementById('btn-quiz-correct').style.display = 'none';
-  document.getElementById('btn-quiz-wrong').style.display   = 'none';
+  ['reveal','correct','wrong'].forEach(b => document.getElementById('btn-quiz-' + b).style.display = 'none');
 }
 
 function closeQuiz() {
@@ -1036,17 +864,19 @@ function closeQuiz() {
 // ─── Header date ──────────────────────────────────────────────────────────────
 (function() {
   const el = document.getElementById('header-date');
-  if (!el) return;
-  el.textContent = new Date().toLocaleDateString('en-US', {
-    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+  if (el) el.textContent = new Date().toLocaleDateString('en-US', {
+    timeZone: 'America/New_York', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
   });
 })();
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
 checkDailyReset();
-['daily','longterm','other'].forEach(renderTodos);
+scheduleMidnightWatcher();
+['daily','longterm'].forEach(renderTodos);
 renderStreak();
 renderVocab();
+renderHealthLog();
+renderMealPrompt();
 </script>
 </body>
 </html>
