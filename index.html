@@ -496,9 +496,12 @@
 
   /* ── Mobile ──────────────────────────────────────────────────────────────── */
   @media (max-width: 768px) {
-    .site-header { padding: 0 18px; }
+    .site-header { padding: 0 16px; height: 52px; }
     .site-header-logo { width: 24px; height: 24px; font-size: 9px; }
     .site-header-title { font-size: 0.9rem; }
+    .site-header-date { display: none; }
+    .site-header-actions { gap: 2px; }
+    #weekend-btn, #settings-btn, #dark-toggle { padding: 0 8px; font-size: 1rem; }
 
     /* Prevent iOS zoom on inputs */
     body { font-size: 16px; }
@@ -580,6 +583,21 @@
       min-width: 0;
       flex: 1 1 80px;
     }
+
+    /* Settings modal: full-screen on mobile */
+    .settings-modal {
+      max-width: 100%;
+      max-height: 100dvh;
+      height: 100dvh;
+      border-radius: 0;
+    }
+    .settings-modal-header { padding: 16px 18px 12px; }
+    .settings-modal-body { padding: 16px 18px; gap: 18px; }
+    .settings-modal-footer { padding: 12px 18px 24px; flex-direction: column; }
+    .settings-modal-footer button { min-height: 48px; font-size: 1rem; }
+    .settings-label { font-size: 0.8rem; }
+    .settings-hint { font-size: 0.875rem; }
+    .modal-overlay { padding: 0; }
   }
 
   /* ── Workout modal ───────────────────────────────────────────────────────── */
@@ -730,9 +748,9 @@
   </div>
   <div class="site-header-actions">
     <span class="site-header-date" id="header-date"></span>
-    <button id="weekend-btn" aria-label="Weekend view" onclick="openWeekend()">📅 <span style="font-size: 0.9rem">Weekend plan</span></button>
+    <button id="weekend-btn" aria-label="Weekend view" onclick="openWeekend()">📅 <span style="font-size: 0.9rem">Weekend</span></button>
     <button id="settings-btn" aria-label="Settings" onclick="openSettings()">⚙️<span style="font-size: 0.9rem"> Settings</span></button>
-    <button id="dark-toggle" aria-label="Toggle dark mode">🌙<span style="font-size: 0.9rem">Night mode</span></button>
+    <button id="dark-toggle" aria-label="Toggle dark mode">🌙<span style="font-size: 0.9rem"> Night</span></button>
   </div>
 </header>
 
