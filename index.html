@@ -500,21 +500,58 @@
     .site-header-logo { width: 24px; height: 24px; font-size: 9px; }
     .site-header-title { font-size: 0.9rem; }
 
-    .page-body { padding: 18px 14px 32px; }
+    /* Prevent iOS zoom on inputs */
+    body { font-size: 16px; }
+
+    .page-body { padding: 16px 16px 40px; }
     .grid { grid-template-columns: 1fr; }
-    .quadrant { min-height: auto; padding: 16px; }
+    .quadrant { min-height: auto; padding: 18px; }
 
     .streak-count { font-size: 1.6rem; }
     .streak-icon  { font-size: 1.8rem; }
 
-    /* Count badge tighter on mobile */
-    .count-badge { margin-right: 3px; font-size: 0.65rem; padding: 2px 6px; }
+    /* Font sizes */
+    .todo-text { font-size: 1rem; }
+    .todo-input, .btn-add { font-size: 1rem; }
+    .btn-clear { font-size: 0.875rem; }
+    .quadrant-title { font-size: 0.8rem; }
+    .count-badge { margin-right: 3px; font-size: 0.75rem; padding: 2px 6px; }
+    .health-entry-text { font-size: 0.9375rem; word-break: break-word; }
+    .health-entry-meta { font-size: 0.75rem; }
+    .habit-name { font-size: 1rem; }
+    .vocab-item { font-size: 0.9375rem; }
+    .spending-item { font-size: 0.875rem; }
+    .feeling-label, .health-log-title, .vocab-section-title { font-size: 0.75rem; }
 
     /* Touch targets */
     .btn-add,
     .btn-clear,
     .btn-practice,
-    .btn-quiz { min-height: 36px; }
+    .btn-quiz { min-height: 44px; }
+
+    .feeling-btn { padding: 8px 10px; min-width: 44px; min-height: 44px; }
+
+    .btn-delete { min-width: 44px; min-height: 44px; padding: 0; display: flex; align-items: center; justify-content: center; }
+
+    .todo-item input[type="checkbox"] { width: 22px; height: 22px; min-width: 22px; }
+
+    .habit-checkbox { width: 22px; height: 22px; }
+
+    #dark-toggle, #settings-btn, #weekend-btn { min-width: 44px; min-height: 44px; }
+
+    .day-btn { min-height: 36px; padding: 6px 12px; }
+
+    /* Spacing */
+    .todo-item { padding: 12px; gap: 12px; }
+    .todo-list { gap: 8px; }
+    .health-log-list { gap: 6px; }
+    .health-entry { padding: 10px 12px; }
+
+    /* Remove nested scroll ceilings on mobile — page scrolls, inner scroll is bad UX */
+    .todo-list,
+    .health-log-list,
+    .vocab-list,
+    .spending-list { max-height: none; }
 
     /* Feeling section: stack label above emoji row */
     .feeling-section {
@@ -543,9 +580,6 @@
       min-width: 0;
       flex: 1 1 80px;
     }
-
-    /* Health entry text overflow */
-    .health-entry-text { word-break: break-word; }
   }
 
   /* ── Workout modal ───────────────────────────────────────────────────────── */
@@ -653,6 +687,27 @@
   .recurring-item-days { font-size: .72rem; color: var(--color-text-muted); white-space: nowrap; }
   .recurring-empty { font-size: .8rem; color: var(--color-text-muted); font-style: italic; padding: 4px 0; list-style: none; }
 
+  /* ── Weekend modal ───────────────────────────────────────────────────────── */
+  #weekend-btn { background: none; border: none; font-size: 1.1rem; cursor: pointer; padding: 4px 8px; border-radius: 6px; color: #94a3b8; transition: color .15s; }
+  #weekend-btn:hover { color: #f8fafc; }
+
+  .weekend-section { display: flex; flex-direction: column; gap: 10px; }
+  .weekend-section-title {
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px;
+    color: #6366f1; text-transform: uppercase;
+    padding-bottom: 8px; border-bottom: 1px solid var(--color-border-light);
+  }
+  .weekend-todo-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+
+  @media (max-width: 768px) {
+    #weekend-overlay .settings-modal {
+      max-width: 100%; max-height: 100vh;
+      border-radius: 0; height: 100%;
+    }
+    .weekend-section-title { font-size: 1rem; }
+    .weekend-todo-list { gap: 8px; }
+  }
+
   /* ── Workout history ─────────────────────────────────────────────────────── */
   .workout-session { display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 14px; margin-bottom: 14px; }
   .workout-session:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
@@ -670,13 +725,14 @@
 
 <header class="site-header">
   <div class="site-header-brand">
-    <div class="site-header-logo" id="header-initials">?</div>
+    <div class="site-header-logo" id="header-initials" style="display:none">?</div>
     <span class="site-header-title" id="header-name">My Space</span>
   </div>
   <div class="site-header-actions">
     <span class="site-header-date" id="header-date"></span>
-    <button id="settings-btn" aria-label="Settings" onclick="openSettings()">⚙️</button>
-    <button id="dark-toggle" aria-label="Toggle dark mode">🌙</button>
+    <button id="weekend-btn" aria-label="Weekend view" onclick="openWeekend()">📅 <span style="font-size: 0.9rem">Weekend plan</span></button>
+    <button id="settings-btn" aria-label="Settings" onclick="openSettings()">⚙️<span style="font-size: 0.9rem"> Settings</span></button>
+    <button id="dark-toggle" aria-label="Toggle dark mode">🌙<span style="font-size: 0.9rem">Night mode</span></button>
   </div>
 </header>
 
@@ -686,7 +742,7 @@
   <div class="grid">
 
     <!-- DAILY -->
-    <div class="quadrant q-daily">
+    <div class="quadrant q-daily" id="quadrant-1">
       <div class="quadrant-header">
         <span class="quadrant-title">Daily</span>
         <span>
@@ -705,7 +761,7 @@
     </div>
 
     <!-- GOALS -->
-    <div class="quadrant q-longterm">
+    <div class="quadrant q-longterm" id="quadrant-2">
       <div class="quadrant-header">
         <span class="quadrant-title">Goals</span>
         <span class="count-badge" id="badge-longterm" style="display:none"></span>
@@ -718,7 +774,7 @@
     </div>
 
     <!-- HEALTH -->
-    <div class="quadrant q-health">
+    <div class="quadrant q-health" id="quadrant-3">
       <div class="quadrant-header">
         <span class="quadrant-title">Health</span>
         <span style="display:flex;gap:6px">
@@ -745,7 +801,7 @@
         <div class="feeling-row">
           <button class="feeling-btn" title="Great"  onclick="logFeeling(5,'😄')">😄</button>
           <button class="feeling-btn" title="Good"   onclick="logFeeling(4,'🙂')">🙂</button>
-          <button class="feeling-btn" title="Okay"   onclick="logFeeling(3,'😐')">😐</button>
+          <button class="feeling-btn" title="Meh"   onclick="logFeeling(3,'😐')">😐</button>
           <button class="feeling-btn" title="Low"    onclick="logFeeling(2,'😕')">😕</button>
           <button class="feeling-btn" title="Rough"  onclick="logFeeling(1,'😣')">😣</button>
         </div>
@@ -778,12 +834,15 @@
     <div class="settings-modal-header"><span>👋 Welcome!</span></div>
     <div class="settings-modal-body">
       <div class="settings-section">
+        <p class="settings-hint" style="margin-top:0">Your personal dashboard to track daily tasks, goals, health, and more, all in one place.</p>
+      </div>
+      <div class="settings-section">
         <label class="settings-label">What's your name?</label>
         <input class="todo-input" id="onboarding-name" placeholder="Your first name…" autocomplete="off">
       </div>
       <div class="settings-section">
         <label class="settings-label">Recurring daily tasks</label>
-        <p class="settings-hint">Add tasks that automatically appear on specific days each week — like "Stretch" every day or "Lift" on Mon/Tue/Thu/Fri. You can skip this and add them later in settings.</p>
+        <p class="settings-hint">Add tasks that automatically appear on specific days each week, like "Stretch" every day or "Lift" on weekdays. You can skip this and add them later in settings. Anything workout-related (e.g., lift, gym, etc.) will trigger a workout logger on completion. </p>
         <div class="recurring-form">
           <input class="todo-input" id="onboarding-task-input" placeholder="Task name…" autocomplete="off">
           <div class="day-picker" id="onboarding-day-picker">
@@ -841,7 +900,7 @@
       </div>
       <div class="settings-section">
         <label class="settings-label">Recurring daily tasks</label>
-        <p class="settings-hint">Tasks that automatically appear on specific days each week. Changes take effect tomorrow (or after a daily reset).</p>
+        <p class="settings-hint">Tasks that automatically appear on specific days each week. Changes take effect after daily resets at 12am EST.</p>
         <div class="recurring-form">
           <input class="todo-input" id="settings-task-input" placeholder="Task name…" autocomplete="off">
           <div class="day-picker" id="settings-day-picker">
@@ -878,10 +937,58 @@
         </div>
         <ul class="recurring-list" id="settings-habits-list"></ul>
       </div>
+      <div class="settings-section">
+        <label class="settings-label">Visible quadrants</label>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+          <label><input type="checkbox" id="toggle-q1"> Daily</label>
+          <label><input type="checkbox" id="toggle-q2"> Goals</label>
+          <label><input type="checkbox" id="toggle-q3"> Health</label>
+          <label><input type="checkbox" id="toggle-q4"> 4th Quadrant</label>
+        </div>
+      </div>
     </div>
     <div class="settings-modal-footer">
       <button class="btn-workout-save" onclick="saveSettingsAndClose()">Save</button>
       <button class="btn-workout-skip" onclick="closeSettings()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- WEEKEND -->
+<div class="modal-overlay" id="weekend-overlay" style="display:none" onclick="handleWeekendOverlayClick(event)">
+  <div class="settings-modal">
+    <div class="settings-modal-header">
+      <span>📅 Weekend</span>
+      <button class="workout-close" onclick="closeWeekend()">×</button>
+    </div>
+    <div class="settings-modal-body">
+      <div class="weekend-section">
+        <div class="weekend-section-title">Friday</div>
+        <ul class="weekend-todo-list" id="weekend-list-fri"></ul>
+        <form onsubmit="handleAddWeekend(event,'fri')" class="todo-form">
+          <input class="todo-input" id="weekend-input-fri" placeholder="Add a task…" autocomplete="off">
+          <button class="btn-add" type="submit" style="background:#6366f1;box-shadow:0 2px 6px rgba(99,102,241,.3)">Add</button>
+        </form>
+        <button class="btn-clear" onclick="clearWeekendDone('fri')">Clear done</button>
+      </div>
+      <div class="weekend-section">
+        <div class="weekend-section-title">Saturday</div>
+        <ul class="weekend-todo-list" id="weekend-list-sat"></ul>
+        <form onsubmit="handleAddWeekend(event,'sat')" class="todo-form">
+          <input class="todo-input" id="weekend-input-sat" placeholder="Add a task…" autocomplete="off">
+          <button class="btn-add" type="submit" style="background:#6366f1;box-shadow:0 2px 6px rgba(99,102,241,.3)">Add</button>
+        </form>
+        <button class="btn-clear" onclick="clearWeekendDone('sat')">Clear done</button>
+      </div>
+      <div class="weekend-section">
+        <div class="weekend-section-title">Sunday</div>
+        <ul class="weekend-todo-list" id="weekend-list-sun"></ul>
+        <form onsubmit="handleAddWeekend(event,'sun')" class="todo-form">
+          <input class="todo-input" id="weekend-input-sun" placeholder="Add a task…" autocomplete="off">
+          <button class="btn-add" type="submit" style="background:#6366f1;box-shadow:0 2px 6px rgba(99,102,241,.3)">Add</button>
+        </form>
+        <button class="btn-clear" onclick="clearWeekendDone('sun')">Clear done</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1001,8 +1108,8 @@ function toggleTodo(key, id) {
   if (t) t.done = !t.done;
   saveTodos(key, todos);
   renderTodos(key);
-  // Trigger workout modal when Lift is checked off
-  if (key === 'daily' && t && t.text === 'Lift' && t.done) {
+  // Trigger workout modal when a lift-related task is checked off
+  if (key === 'daily' && t && t.done && /\b(lift(ing|s)?|workout|gym|exercise|training|weights)\b/i.test(t.text)) {
     openWorkoutModal();
   }
 }
@@ -1090,10 +1197,22 @@ function getInitials(name) {
 }
 
 function applySettings(s) {
-  document.getElementById('header-initials').textContent = getInitials(s.name || '');
+  const initialsEl = document.getElementById('header-initials');
+  const initials = getInitials(s.name || '');
+  if (initials && initials !== '?') {
+    initialsEl.textContent = initials;
+    initialsEl.style.display = '';
+  } else {
+    initialsEl.style.display = 'none';
+  }
   const first = (s.name || 'My').trim().split(' ')[0];
   document.getElementById('header-name').textContent = first + '\u2019s Space';
   renderQuadrant4(s);
+  const hidden = s.hiddenQuadrants || [];
+  ['quadrant-1','quadrant-2','quadrant-3','quadrant-4'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = hidden.includes(id) ? 'none' : '';
+  });
 }
 
 // ─── Onboarding ───────────────────────────────────────────────────────────────
@@ -1208,6 +1327,11 @@ function openSettings() {
   settingsHabits = (q4.habits || []).map(function(h) { return { id: h.id, name: h.name }; });
   renderSettingsHabits();
   selectWidget(settingsWidget);
+  const hidden = s.hiddenQuadrants || [];
+  document.getElementById('toggle-q1').checked = !hidden.includes('quadrant-1');
+  document.getElementById('toggle-q2').checked = !hidden.includes('quadrant-2');
+  document.getElementById('toggle-q3').checked = !hidden.includes('quadrant-3');
+  document.getElementById('toggle-q4').checked = !hidden.includes('quadrant-4');
   document.getElementById('settings-overlay').style.display = 'flex';
 }
 
@@ -1239,7 +1363,12 @@ function saveSettingsAndClose() {
   const name = document.getElementById('settings-name').value.trim();
   if (!name) { showToast('Please enter your name'); document.getElementById('settings-name').focus(); return; }
   const lang = document.getElementById('settings-language').value.trim() || 'French';
-  const s = { name: name, recurringTasks: settingsTasks, quadrant4: { widget: settingsWidget, language: lang, habits: settingsHabits } };
+  const hiddenQuadrants = [];
+  if (!document.getElementById('toggle-q1').checked) hiddenQuadrants.push('quadrant-1');
+  if (!document.getElementById('toggle-q2').checked) hiddenQuadrants.push('quadrant-2');
+  if (!document.getElementById('toggle-q3').checked) hiddenQuadrants.push('quadrant-3');
+  if (!document.getElementById('toggle-q4').checked) hiddenQuadrants.push('quadrant-4');
+  const s = { name: name, recurringTasks: settingsTasks, quadrant4: { widget: settingsWidget, language: lang, habits: settingsHabits }, hiddenQuadrants: hiddenQuadrants };
   saveSettings(s);
   applySettings(s);
   closeSettings();
@@ -1268,6 +1397,11 @@ function performDailyReset() {
   localStorage.setItem('daily_last_reset', t);
   seedDailyTasks();
   renderTodos('daily');
+  // If today is Monday (day 1), the weekend just ended — clear weekend plans
+  if (getETDayOfWeek() === 1) {
+    localStorage.removeItem('weekend_todos');
+    ['fri','sat','sun'].forEach(renderWeekendSection);
+  }
   showToast('Good morning! Daily tasks reset ☀️');
 }
 
@@ -1852,6 +1986,77 @@ function saveWorkout() {
 
   closeWorkoutModal();
   showToast('Workout logged!');
+}
+
+// ─── Weekend view ─────────────────────────────────────────────────────────────
+function loadWeekendTodos() {
+  try { return JSON.parse(localStorage.getItem('weekend_todos')) || { fri: [], sat: [], sun: [] }; }
+  catch { return { fri: [], sat: [], sun: [] }; }
+}
+
+function saveWeekendTodos(obj) { localStorage.setItem('weekend_todos', JSON.stringify(obj)); }
+
+function openWeekend() {
+  renderWeekendSection('fri');
+  renderWeekendSection('sat');
+  renderWeekendSection('sun');
+  document.getElementById('weekend-overlay').style.display = 'flex';
+}
+
+function closeWeekend() {
+  document.getElementById('weekend-overlay').style.display = 'none';
+}
+
+function handleWeekendOverlayClick(e) {
+  if (e.target === document.getElementById('weekend-overlay')) closeWeekend();
+}
+
+function renderWeekendSection(day) {
+  const list = document.getElementById('weekend-list-' + day);
+  if (!list) return;
+  const data = loadWeekendTodos();
+  const items = data[day] || [];
+  if (!items.length) { list.innerHTML = '<li class="empty-state">Nothing here yet</li>'; return; }
+  list.innerHTML = items.map(t => `
+    <li class="todo-item">
+      <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleWeekendTask('${day}','${t.id}')">
+      <span class="todo-text ${t.done ? 'done' : ''}">${escHtml(t.text)}</span>
+      <button class="btn-delete" onclick="deleteWeekendTask('${day}','${t.id}')" title="Delete">×</button>
+    </li>`).join('');
+}
+
+function handleAddWeekend(e, day) {
+  e.preventDefault();
+  const input = document.getElementById('weekend-input-' + day);
+  const text = input.value.trim();
+  if (!text) return;
+  const data = loadWeekendTodos();
+  data[day].push({ id: uid(), text, done: false });
+  saveWeekendTodos(data);
+  input.value = '';
+  renderWeekendSection(day);
+}
+
+function toggleWeekendTask(day, id) {
+  const data = loadWeekendTodos();
+  const t = data[day].find(t => t.id === id);
+  if (t) t.done = !t.done;
+  saveWeekendTodos(data);
+  renderWeekendSection(day);
+}
+
+function deleteWeekendTask(day, id) {
+  const data = loadWeekendTodos();
+  data[day] = data[day].filter(t => t.id !== id);
+  saveWeekendTodos(data);
+  renderWeekendSection(day);
+}
+
+function clearWeekendDone(day) {
+  const data = loadWeekendTodos();
+  data[day] = data[day].filter(t => !t.done);
+  saveWeekendTodos(data);
+  renderWeekendSection(day);
 }
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
