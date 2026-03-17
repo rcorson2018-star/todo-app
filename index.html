@@ -504,8 +504,9 @@
     .site-header-actions { gap: 2px; }
     #weekend-btn, #settings-btn, #dark-toggle { padding: 0 8px; font-size: 1rem; }
 
-    /* Prevent iOS zoom on inputs */
+    /* Prevent iOS zoom on inputs — must be ≥16px or iOS auto-zooms on focus */
     body { font-size: 16px; }
+    input, select, textarea { font-size: 1rem; }
 
     .page-body { padding: 16px 16px 40px; }
     .grid { grid-template-columns: 1fr; }
